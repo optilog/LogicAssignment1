@@ -4,15 +4,6 @@ from math import sqrt
 def var(i, j, v):
     return Bool('Cell_{:d}_{:d}_{:d}'.format(i, j, v))
 
-def amo(lits):
-    clauses = []
-    for i in range(len(lits)):
-        for j in range(i + 1, len(lits)):
-            v1 = lits[i]
-            v2 = lits[j]
-            clauses.append([~v1, ~v2])
-    return clauses
-
 def visualize(interp, sudoku):
     cells = {
         v.name

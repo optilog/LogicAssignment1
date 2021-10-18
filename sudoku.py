@@ -1,9 +1,21 @@
 from optilog.formulas.modelling import *
 from optilog.formulas import CNF
 from optilog.sat import Glucose41
-from sudoku_base import amo, read_sudoku, var, visualize
+from sudoku_base import read_sudoku, var, visualize
 import sys
 
+
+def at_most_one(lits):
+    # - YOUR CODE HERE -
+    return clauses
+
+def at_least_one(lits):
+    # - YOUR CODE HERE -
+    return clauses
+
+def exactly_one(lits):
+    # - YOUR CODE HERE -
+    return clauses
 
 def solve(path):
     cnf = CNF()
@@ -15,9 +27,10 @@ def solve(path):
     # ---- Variables ---
 
     # We have a Boolean for each cell i,j and value v.
-    # You can use function var(i,j,v) to refer to 
-    # Boolean variable Bool('Cell_%d_%d_%d'.format(i, j, v))
-    # Ex: var(1,1,2) returns Bool('Cell_1_1_2')
+    # Function var(i,j,v) returns Boolean variable Bool('Cell_%d_%d_%d'.format(i, j, v))
+    #
+    # Ex: A call to var(1,1,2) returns Bool('Cell_1_1_2')
+    # The intended meaning is: 
     # Cell_1_1_2 is True iff Cell 1,1 is assigned to value 2.
     
 
