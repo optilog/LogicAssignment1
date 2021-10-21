@@ -45,7 +45,7 @@ class Sudoku:
         self.subgroup_height = subgroup_height
         self.subgroup_length = subgroup_length
 
-def read_sudoku(path):
+def read_sudoku(path, print_dim=True):
     cells = []
     with open(path, 'r') as f:
         subgroup_height = None
@@ -65,6 +65,7 @@ def read_sudoku(path):
                     v = int(c) - 1
                 vals.append(v)
             cells.append(vals)
-    print('DIMENSIONS REGION', 'Height:', subgroup_height, 'x', 'Length:', subgroup_length)
+    if print_dim:
+        print('DIMENSIONS REGION', 'Height:', subgroup_height, 'x', 'Length:', subgroup_length)
     return Sudoku(cells, subgroup_height, subgroup_length)
         
