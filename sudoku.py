@@ -6,16 +6,20 @@ import sys
 
 
 def at_most_one(lits):
-    # - YOUR CODE HERE -
+    clauses = []
+    for i in range(len(lits) - 1):
+        for j in range(i + 1, len(lits)):
+            v1 = lits[i]
+            v2 = lits[j]
+            clauses.append([~v1, ~v2])
     return clauses
 
 def at_least_one(lits):
-    # - YOUR CODE HERE -
+    clauses = [[x for x in lits]]
     return clauses
 
 def exactly_one(lits):
-    # - YOUR CODE HERE -
-    return clauses
+    return at_least_one(lits) + at_most_one(lits)
 
 def solve(path):
     cnf = CNF()
@@ -27,11 +31,15 @@ def solve(path):
     # ---- Variables ---
 
     # We have a Boolean for each cell i,j and value v.
-    # Function var(i,j,v) returns Boolean variable Bool('Cell_%d_%d_%d'.format(i, j, v))
+    # Function var(i,j,v) returns Boolean variable Bool('Cell_{:d}_{:d}_{:d}'.format(i, j, v))
     #
     # Ex: A call to var(1,1,2) returns Bool('Cell_1_1_2')
     # The intended meaning is: 
-    # Cell_1_1_2 is True iff Cell 1,1 is assigned to value 2.
+    # Cell_1_1_2 is True iff Cell 1,1 is assigned to value 3.
+    
+    # Notice that all the values are 0-indexed!
+    # This means that the upper left cell with value 1 is
+    # represented by the boolean variable var(0, 0, 0) ==> Cell_0_0_0
     
 
     # --- Clauses ----

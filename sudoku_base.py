@@ -26,12 +26,20 @@ def visualize(interp, sudoku):
         for i in range(VALUES):
             if i > 0 and i % SUBGROUP_LENGTH == 0:
                 print('|', end=' ')
+            already_found_value = None
             for v in range(VALUES):
                 variable = var(i, j, v)
                 if variable.name in cells:
+                    if already_found_value is not None:
+                        print(f'ERROR! Cell constraints are not correct. Found that both {already_found_value} and {variable.name} are True at the same time!')
+                        exit(-1)
                     e = str(v + 1)
                     e = ' ' * (SPACE_VAL - len(e)) + e
                     print(e, end=' ')
+                    already_found_value = variable.name
+            if already_found_value is None:
+                print(f'ERROR! Cell constraints are not correct. No value found True for cell var({i},{j},_)!')
+                exit(-1)
         print()
 
 class Sudoku:
