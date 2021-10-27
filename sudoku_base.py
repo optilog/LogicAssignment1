@@ -1,8 +1,8 @@
 from optilog.formulas.modelling import *
 from math import sqrt
 
-def var(i, j, v):
-    return Bool('Cell_{:d}_{:d}_{:d}'.format(i, j, v))
+def var(j, i, v):
+    return Bool('Cell_{:d}_{:d}_{:d}'.format(j, i, v))
 
 def visualize(interp, sudoku):
     cells = {
@@ -29,7 +29,7 @@ def visualize(interp, sudoku):
                 print('|', end=' ')
             value_to_print = None
             for v in range(VALUES):
-                variable = var(i, j, v)
+                variable = var(j, i, v)
                 if variable.name in cells:
                     if value_to_print is not None:
                         value_to_print = 'E'
