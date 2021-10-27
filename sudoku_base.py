@@ -15,6 +15,7 @@ def visualize(interp, sudoku):
     VALUES = SUBGROUP_HEIGHT * SUBGROUP_LENGTH
     SPACE_VAL = len(str(VALUES))
     GROUPS_HORIZ = VALUES // SUBGROUP_LENGTH
+    more_than_one_value_error = False
     for j in range(VALUES):
         if j > 0 and j % SUBGROUP_HEIGHT == 0:
             acc = ''
@@ -26,21 +27,26 @@ def visualize(interp, sudoku):
         for i in range(VALUES):
             if i > 0 and i % SUBGROUP_LENGTH == 0:
                 print('|', end=' ')
-            already_found_value = None
+            value_to_print = None
             for v in range(VALUES):
                 variable = var(i, j, v)
                 if variable.name in cells:
-                    if already_found_value is not None:
-                        print(f'ERROR! Cell constraints are not correct. Found that both {already_found_value} and {variable.name} are True at the same time!')
-                        exit(-1)
-                    e = str(v + 1)
-                    e = ' ' * (SPACE_VAL - len(e)) + e
-                    print(e, end=' ')
-                    already_found_value = variable.name
-            if already_found_value is None:
-                print(f'ERROR! Cell constraints are not correct. No value found True for cell var({i},{j},_)!')
-                exit(-1)
+                    if value_to_print is not None:
+                        value_to_print = 'E'
+                        more_than_one_value_error = True
+                    else:
+                        value_to_print = v + 1
+                    
+            if value_to_print is None:
+                value_to_print = '-'
+            e = str(value_to_print)
+            e = ' ' * (SPACE_VAL - len(e)) + e
+            print(e, end=' ')
         print()
+    if more_than_one_value_error:
+        print(f'ERROR! Cell constraints are not correct.')
+        print('Cells with more than value set to True represented with letter \'E\'')
+        exit(-1)
 
 class Sudoku:
     def __init__(self, cells, subgroup_height=None, subgroup_length=None):
