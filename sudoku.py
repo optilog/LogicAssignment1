@@ -30,8 +30,10 @@ def solve(path):
 
     # ---- Variables ---
 
-    # We have a Boolean for each cell i,j and value v.
-    # Function var(i,j,v) returns Boolean variable Bool('Cell_{:d}_{:d}_{:d}'.format(i, j, v))
+    # We have a Boolean for each cell j,i and value v.
+    # Where j is the row
+    # and i is the column
+    # Function var(j,i,v) returns Boolean variable Bool('Cell_{:d}_{:d}_{:d}'.format(j, i, v))
     #
     # Ex: A call to var(1,1,2) returns Bool('Cell_1_1_2')
     # The intended meaning is: 
