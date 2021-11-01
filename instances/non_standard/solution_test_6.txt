@@ -1,0 +1,7 @@
+DIMENSIONS REGION Height: 2 x Length: 2
+Has solution? True
+2 1 | 4 3 
+3 4 | 2 1 
+----·----
+4 3 | 1 2 
+1 2 | 3 4 
